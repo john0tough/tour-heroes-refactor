@@ -5759,6 +5759,78 @@ var ReactiveFormsModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/dashboard/dashboard.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/dashboard/dashboard.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/* DashboardComponent's private CSS styles */\r\n[class*='col-'] {\r\n    float: left;\r\n    padding-right: 20px;\r\n    padding-bottom: 20px;\r\n  }\r\n[class*='col-']:last-of-type {\r\n    padding-right: 0;\r\n  }\r\na {\r\n    text-decoration: none;\r\n  }\r\n*, *:after, *:before {\r\n    box-sizing: border-box;\r\n  }\r\nh3 {\r\n    text-align: center;\r\n    margin-bottom: 0;\r\n  }\r\nh4 {\r\n    position: relative;\r\n  }\r\n.grid {\r\n    margin: 0;\r\n  }\r\n.col-1-4 {\r\n    width: 25%;\r\n  }\r\n.module {\r\n    padding: 20px;\r\n    text-align: center;\r\n    color: #eee;\r\n    max-height: 120px;\r\n    min-width: 120px;\r\n    background-color: #607d8b;\r\n    border-radius: 2px;\r\n  }\r\n.module:hover {\r\n    background-color: #eee;\r\n    cursor: pointer;\r\n    color: #607d8b;\r\n  }\r\n.grid-pad {\r\n    padding: 10px 0;\r\n  }\r\n.grid-pad > [class*='col-']:last-of-type {\r\n    padding-right: 20px;\r\n  }\r\n@media (max-width: 600px) {\r\n    .module {\r\n      font-size: 10px;\r\n      max-height: 75px; }\r\n  }\r\n@media (max-width: 1024px) {\r\n    .grid {\r\n      margin: 0;\r\n    }\r\n    .module {\r\n      min-width: 60px;\r\n    }\r\n  }"
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/dashboard/dashboard.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Top Heroes</h3>\n<div class=\"grid grid-pad\">\n  <a *ngFor=\"let hero of heroes\" class=\"col-1-4\" routerLink=\"{{ '../' + hero.id}}\">\n      <div class=\"module hero\">\n        <h4>{{hero.name}}</h4>\n      </div>\n  </a>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/dashboard/dashboard.component.ts ***!
+  \**************************************************/
+/*! exports provided: DashboardComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _hero_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hero.service */ "./src/app/hero.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DashboardComponent = /** @class */ (function () {
+    function DashboardComponent(heroService) {
+        this.heroService = heroService;
+    }
+    DashboardComponent.prototype.ngOnInit = function () {
+        this.getHeroes();
+    };
+    DashboardComponent.prototype.getHeroes = function () {
+        var _this = this;
+        this.heroService.getHeroes()
+            .subscribe(function (heroes) { return _this.heroes = heroes.slice(1, 5); });
+    };
+    DashboardComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-dashboard',
+            template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/dashboard/dashboard.component.html"),
+            styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/dashboard/dashboard.component.css")]
+        }),
+        __metadata("design:paramtypes", [_hero_service__WEBPACK_IMPORTED_MODULE_1__["HeroService"]])
+    ], DashboardComponent);
+    return DashboardComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/hero-detail/hero-detail.component.css":
 /*!*******************************************************!*\
   !*** ./src/app/hero-detail/hero-detail.component.css ***!
@@ -5777,7 +5849,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"hero\">\n    <h2>{{ hero.name| uppercase}} Details</h2>\n    <div><span>id: </span>{{hero.id}}</div>\n    <div><span>name: </span>{{hero.name}}</div>\n    <div><label for=\"\">\n        <input type=\"text\" [(ngModel)]=\"hero.name\" placeholder=\"name\">\n    </label></div>\n</ng-container>\n<a routerLink=\"../\">Back to List</a>       "
+module.exports = "<ng-container *ngIf=\"hero\">\n    <h2>{{ hero.name| uppercase}} Details</h2>\n    <div><span>id: </span>{{hero.id}}</div>\n    <div><span>name: </span>{{hero.name}}</div>\n    <div><label for=\"\">\n        <input type=\"text\" [(ngModel)]=\"hero.name\" placeholder=\"name\">\n    </label></div>\n</ng-container>\n<button (click)=\"goBack()\">go back</button>"
 
 /***/ }),
 
@@ -5794,6 +5866,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _hero_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hero.service */ "./src/app/hero.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5806,15 +5879,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HeroDetailComponent = /** @class */ (function () {
-    function HeroDetailComponent(route, service) {
+    function HeroDetailComponent(route, service, location) {
         this.route = route;
         this.service = service;
+        this.location = location;
     }
     HeroDetailComponent.prototype.ngOnInit = function () {
+        this.getHero();
+    };
+    HeroDetailComponent.prototype.getHero = function () {
         var _this = this;
         var id = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-        this.service.getHero(id).subscribe(function (hero) { return _this.hero = hero; });
+        this.service.getHero(id).subscribe(function (hero) { return (_this.hero = hero); });
+    };
+    HeroDetailComponent.prototype.goBack = function () {
+        console.log(this.location);
+        this.location.back();
     };
     HeroDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5822,7 +5904,7 @@ var HeroDetailComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./hero-detail.component.html */ "./src/app/hero-detail/hero-detail.component.html"),
             styles: [__webpack_require__(/*! ./hero-detail.component.css */ "./src/app/hero-detail/hero-detail.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _hero_service__WEBPACK_IMPORTED_MODULE_2__["HeroService"]])
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _hero_service__WEBPACK_IMPORTED_MODULE_2__["HeroService"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"]])
     ], HeroDetailComponent);
     return HeroDetailComponent;
 }());
@@ -5867,6 +5949,7 @@ var HeroService = /** @class */ (function () {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(_mock_heroes__WEBPACK_IMPORTED_MODULE_1__["HEROES"]);
     };
     HeroService.prototype.getHero = function (id) {
+        this.service.add("HeroService: fetched hero id=" + id);
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(_mock_heroes__WEBPACK_IMPORTED_MODULE_1__["HEROES"].find(function (hero) { return hero.id === id; }));
     };
     HeroService = __decorate([
@@ -5919,7 +6002,7 @@ var HeroesListComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-heroes-list',
             styles: [__webpack_require__(/*! ./heroes.component.css */ "./src/app/heroes/heroes.component.css")],
-            template: "\n  <ul class=\"heroes\">\n    <li *ngFor=\"let hero of heroes\">\n        <a routerLink=\"{{ '../' + hero.id}}\"><span class=\"badge\">{{hero.id}}</span> {{hero.name}}</a>\n    </li>\n</ul>\n"
+            template: "\n  <ul class=\"heroes\">\n    <li *ngFor=\"let hero of heroes\">\n        <a routerLink=\"{{ '../' + hero.id}}\">\n          <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n        </a>\n    </li>\n</ul>\n"
         }),
         __metadata("design:paramtypes", [_hero_service__WEBPACK_IMPORTED_MODULE_1__["HeroService"]])
     ], HeroesListComponent);
@@ -5945,6 +6028,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _hero_detail_hero_detail_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hero-detail/hero-detail.component */ "./src/app/hero-detail/hero-detail.component.ts");
 /* harmony import */ var _heroes_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./heroes-list.component */ "./src/app/heroes/heroes-list.component.ts");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -5956,12 +6040,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 /* scope heroes */
 var routes = [
-    { path: '', pathMatch: 'prefix', redirectTo: 'list' },
+    { path: '', pathMatch: 'prefix', redirectTo: 'dashboard' },
     { path: '', component: _heroes_component__WEBPACK_IMPORTED_MODULE_1__["HeroesComponent"],
         children: [
-            { path: 'list', component: _heroes_list_component__WEBPACK_IMPORTED_MODULE_4__["HeroesListComponent"] }
+            { path: 'list', component: _heroes_list_component__WEBPACK_IMPORTED_MODULE_4__["HeroesListComponent"] },
+            { path: 'dashboard', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"] },
         ] },
     { path: ':id', component: _hero_detail_hero_detail_component__WEBPACK_IMPORTED_MODULE_3__["HeroDetailComponent"] }
 ];
@@ -5999,7 +6085,7 @@ module.exports = "/* HeroesComponent's private CSS styles */\r\n.selected {\r\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>My Heroes</h2>\r\n<router-outlet></router-outlet>\r\n<!--<app-hero-detail [hero]=\"selectedHero\"></app-hero-detail>-->"
+module.exports = "<h2>My Heroes</h2>\r\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -6058,12 +6144,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heroes_list_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./heroes-list.component */ "./src/app/heroes/heroes-list.component.ts");
 /* harmony import */ var _hero_detail_hero_detail_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../hero-detail/hero-detail.component */ "./src/app/hero-detail/hero-detail.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -6081,7 +6169,8 @@ var HeroesModule = /** @class */ (function () {
             declarations: [
                 _heroes_component__WEBPACK_IMPORTED_MODULE_2__["HeroesComponent"],
                 _heroes_list_component__WEBPACK_IMPORTED_MODULE_5__["HeroesListComponent"],
-                _hero_detail_hero_detail_component__WEBPACK_IMPORTED_MODULE_6__["HeroDetailComponent"]
+                _hero_detail_hero_detail_component__WEBPACK_IMPORTED_MODULE_6__["HeroDetailComponent"],
+                _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_8__["DashboardComponent"]
             ],
             providers: [_hero_service__WEBPACK_IMPORTED_MODULE_3__["HeroService"]]
         })

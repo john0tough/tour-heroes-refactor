@@ -93,7 +93,7 @@ module.exports = "/* Application-wide Styles */\r\nh1 {\r\n    color: #369;\r\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{title}}</h1>\n<router-outlet></router-outlet>\n<!--<app-message></app-message>-->"
+module.exports = "<h1>{{title}}</h1>\n<nav>\n  <a routerLink=\"/heroes/dashboard\">Dashboard</a>\n  <a routerLink=\"/heroes/list\">Heroes</a>\n</nav>\n<router-outlet></router-outlet>\n<app-message></app-message>\n"
 
 /***/ }),
 
@@ -208,6 +208,7 @@ var MessageService = /** @class */ (function () {
         this.messages = [];
     }
     MessageService.prototype.add = function (message) {
+        console.log(message);
         this.messages.push(message);
     };
     MessageService.prototype.clear = function () {
@@ -349,7 +350,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Develoment\Angular\heroes\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! E:\Develoment\Angular\tour-heroes-refactor\src\main.ts */"./src/main.ts");
 
 
 /***/ })

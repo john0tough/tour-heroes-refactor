@@ -7,13 +7,15 @@ import { CommonModule } from '@angular/common';
 import { HeroesListComponent } from './heroes-list.component';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @NgModule({
     imports: [CommonModule, FormsModule, HeroesRoutingModule],
     declarations: [
         HeroesComponent,
         HeroesListComponent,
-        HeroDetailComponent
+        HeroDetailComponent,
+        DashboardComponent
     ],
     providers: [HeroService]
 })

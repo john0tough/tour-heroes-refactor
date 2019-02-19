@@ -8,7 +8,9 @@ import { HeroService } from '../hero.service';
   template: `
   <ul class="heroes">
     <li *ngFor="let hero of heroes">
-        <a routerLink="{{ '../' + hero.id}}"><span class="badge">{{hero.id}}</span> {{hero.name}}</a>
+        <a routerLink="{{ '../' + hero.id}}">
+          <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
     </li>
 </ul>
 `
@@ -25,8 +27,4 @@ export class HeroesListComponent implements OnInit {
         this.heroes = heroes;
       });
   }
-
-  // onHeroSelect(newHero: Hero) {
-  //   this.selectedHero = newHero;
-  // }
 }
